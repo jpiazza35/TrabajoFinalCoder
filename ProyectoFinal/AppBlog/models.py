@@ -1,7 +1,6 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models 
 
-# Create your models here.
 
 #we created a tuple to determine the status of a blog
 STATUS = (
@@ -9,8 +8,7 @@ STATUS = (
     (1, "Publish")
 )
 
-
-class Blog(models.Model):
+class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True) ##Esta palabra define la parte final de la URL que identifica una página dentro de un sitio web.
     author = models.ForeignKey(User,on_delete= models.CASCADE)
@@ -19,6 +17,7 @@ class Blog(models.Model):
     image = models.ImageField()
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now= True)
+    ## esto va en la vista comments = Comment.objects.filter(post__id = id)
 
     class Meta:
         ordering = ['-created_on']
@@ -35,3 +34,10 @@ We specify descending order using the negative prefix. By doing so, posts publis
 The __str__() method is the default human-readable representation of the object. Django will use it in many places, such as the administration site.
 '''
 
+class Comment(models.Model):
+    content = models.TextField()
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE )
+    
+class Tag(models.Model):
+    name=models.CharField(max_length=40)

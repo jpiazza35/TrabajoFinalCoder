@@ -7,7 +7,10 @@ from django.http import HttpResponse
 def Inicio(request):
     return HttpResponse("ESTO ES EL INICIO")
 
-def Blog(request):
+def Post(request, post_id):
+    
+    
+    
     return HttpResponse("this is Blog section")
 
 def About(request):

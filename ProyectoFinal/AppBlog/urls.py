@@ -5,7 +5,7 @@ from AppBlog import views
 
 urlpatterns = [
     path('', views.Inicio),
-    path('blogs/',views.Blog),
+    path('blogs/',views.Post),
     path('about/', views.About)
     
 ]
