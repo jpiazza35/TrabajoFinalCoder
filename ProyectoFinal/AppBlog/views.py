@@ -5,7 +5,7 @@ from AppBlog.models import *
 # Create your views here.
 
 def post(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(status=1).order_by('-created_on')
     return render(request,"AppBlog/inicio.html", {"posts": posts})
 
 def showPost(request, id):
