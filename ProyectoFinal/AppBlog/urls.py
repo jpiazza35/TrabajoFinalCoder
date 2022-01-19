@@ -4,8 +4,10 @@ from AppBlog import views
 
 
 urlpatterns = [
-    path('', views.Inicio),
-    path('blogs/',views.Post),
-    path('about/', views.About)
+    path('', views.Post, name='Post'),
+    path('showPost/<id>',views.showPost, name="ShowPost"),
+    path('about/', views.About, name="About"),
+    path("comment/<id>", views.comment, name="Comment")
+
     
 ]

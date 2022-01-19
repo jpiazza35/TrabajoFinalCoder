@@ -1,20 +1,24 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from AppBlog.models import *
 
 # Create your views here.
 
-def Inicio(request):
-    return HttpResponse("ESTO ES EL INICIO")
+def post(request):
+    posts = Post.objects.all()
+    return render(request,"AppBlog/inicio.html", {"posts": posts})
 
-def Post(request, post_id):
-    
-    
-    
-    return HttpResponse("this is Blog section")
+def showPost(request, id):
+    post = Post.objects.get(id=id)
+    tags = Tag.objects.filter(post__id=id)
+    return render(request, "AppBlog/show.html", {"post": post, "tags": tags})
+
+def comment(request, id):
+    comment= Comment.objects.get(id=id)
+    return render(request, "AppBlog/comment.html",{"comment": comment})
 
 def About(request):
-    return HttpResponse('About section')
+    return render(request, 'AppBlog/about.html')
 
 
 #def create_blog(request):
