@@ -22,4 +22,4 @@ def About(request):
 
 
 #def create_blog(request):
- #   blog = Blog()
+ ##   blog = Blog()
