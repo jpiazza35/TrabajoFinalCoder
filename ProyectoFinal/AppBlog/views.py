@@ -21,20 +21,28 @@ def newPost(request):
 ##Muestra todos los post
 def post(request):
     posts = Post.objects.filter(status=1).order_by('-created_on')
-    return render(request,"AppBlog/inicio.html", {"posts": posts})
+    return render(request,"AppBlog/posts.html", {"posts": posts})
 
 ##muestra el post segun id
 def showPost(request, id):
     post = Post.objects.get(id=id)
     tags = Tag.objects.filter(post__id=id)
-    return render(request, "AppBlog/show.html", {"post": post, "tags": tags})
+    return render(request, "AppBlog/single.html", {"post": post, "tags": tags})
 
+##aca es donde los users dejan los commentario en cada post
 def comment(request, id):
     comment= Comment.objects.get(id=id)
     return render(request, "AppBlog/comment.html",{"comment": comment})
 
 def About(request):
     return render(request, 'AppBlog/about.html')
+
+def gallery(request):
+    return render(request, 'AppBlog/gallery.html')
+
+def contactus(request):
+    return render(request, 'AppBlog/contact.html')
+
 
 
 #def create_blog(request):
