@@ -1,10 +1,31 @@
 from django.shortcuts import render, HttpResponse
-from AppBlog.models import *
-from AppBlog.forms import NewPost
+from django.views.generic import ListView, DeleteView,CreateView,UpdateView, DetailView
+from .models import Post, Comment, PostView,Like
 
 # Create your views here.
 ##views de formularios 
+##we use views based in classes.
 
+class PostListView(ListView):
+    model = Post
+
+class PostDetailView(DetailView):
+    model = Post
+
+class PostCreateView(CreateView):
+    model = Post
+
+class PostUpdateView(UpdateView):
+    model = Post
+
+class PostDeleteView(DeleteView):
+    model = Post
+
+
+
+
+'''
+forma mas rebuscada:
 def newPost(request):
     if(request.method == 'POST'):
         post_formulario = NewPost(request.POST)
@@ -40,10 +61,12 @@ def About(request):
 def gallery(request):
     return render(request, 'AppBlog/gallery.html')
 
-def contactus(request):
+def contacts(request):
     return render(request, 'AppBlog/contact.html')
 
 
 
 #def create_blog(request):
  ##   blog = Blog()
+
+'''

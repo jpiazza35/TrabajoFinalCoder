@@ -1,26 +1,50 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models 
+from django.utils import timezone
+
+class User(AbstractUser):
+    pass
+
+    def __str__(self):
+        return self.username
 
 
+
+class Tag(models.Model):
+    name=models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.name
 #we created a tuple to determine the status of a blog
-STATUS = (
-    (0, "Draft"),
-    (1, "Publish")
-)
+
 
 class Post(models.Model):
+
+    class PostObjects(models.Manager):
+        def get_queryset(self):
+            return super().get_queryset() .filter(status='published')
+    #STATUS = (
+    #('draft', "Draft"),
+    #('published', "Published"),
+#)
+
+
+    tag = models.ForeignKey(Tag, on_delete=models.PROTECT, default=1 )
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True) ##Esta palabra define la parte final de la URL que identifica una página dentro de un sitio web.
-    author = models.ForeignKey(User,on_delete= models.CASCADE)
+    slug = models.SlugField(max_length=250, unique_for_date='published', null=False, unique=True) ##Esta palabra define la parte final de la URL que identifica una página dentro de un sitio web.
+    author = models.ForeignKey(User,on_delete=models.CASCADE, related_name='blog_posts')
     content= models.TextField()
-    status = models.IntegerField(choices=STATUS, default=0)
+    #status = models.CharField(max_length=50,choices=STATUS, default='draft')
     image = models.ImageField()
-    created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now= True)
+    created_on = models.DateTimeField(default=timezone.now)
+    updated_on = models.DateTimeField(default=timezone.now)
+    objects = models.Manager() ##to see all objects from db
+    postobjects = PostObjects() ## custom way to find just objects that are published.
+    
     ## esto va en la vista comments = Comment.objects.filter(post__id = id)
 
     class Meta:
-        ordering = ['-created_on']
+        ordering = ('-created_on',)
 
     def __str__(self):
         return self.title
@@ -35,10 +59,33 @@ The __str__() method is the default human-readable representation of the object.
 '''
 
 class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    name = models.CharField(max_length=50) #name of the person that make the comment
+    email = models.EmailField()
     content = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE )
+    created_on = models.DateTimeField(auto_now_add=True)
+    status = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ("created_on",)
+        
+        def __str__(self):
+            return f"comment by : {self.name}"
+
+
+class PostView(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE )
     created_on = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.user
 
-class Tag(models.Model):
-    name=models.CharField(max_length=40)
+
+class Like(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.user

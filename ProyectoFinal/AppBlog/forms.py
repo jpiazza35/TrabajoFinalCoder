@@ -1,3 +1,4 @@
+'''
 from django import forms
 from django.forms import widgets
 from AppBlog.models import User,Post
@@ -15,3 +16,5 @@ class NewComment(forms.Form):
     user = forms.Select(User)
     created_on = forms.DateTimeField(auto_now_add=True)
 
+
+'''

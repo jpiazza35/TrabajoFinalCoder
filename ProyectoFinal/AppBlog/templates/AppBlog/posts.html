@@ -6,7 +6,7 @@
     <section class="blog-page">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-12 left-side">
+                <div class="col-lg-6 col-md-12 left-side">                        
                     <h2>My Recent Blog Posts</h2>
                     <div class="row">
                         <div class="col-md-6">
@@ -17,12 +17,14 @@
                             </figure>
                         </div>
                         <div class="col-md-6">
-                            <h4><a href="single.html">Super and up for the comming model in shoot at newyork USA morning..</a></h4>
+                            {% for object  in objects_list  %}
+                    
+                            <h4><a href="single.html">{{object.title}}</a></h4>
                             <div class="btn-group">
-                                <a href="single.html" class="btn btn-danger">Ladakh, India</a>
+                                <a href="single.html" class="btn btn-danger">{{object.slug}}</a>
                                 <button class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> 345</button>
                             </div>
-                            <p>Posted on : 23.05.2016</p>
+                            <p>Posted on : {{object.created_on}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -33,105 +35,9 @@
                                 </figcaption>
                             </figure>
                         </div>
-                        <div class="col-md-6">
-                            <h4><a href="single.html">Super and up for the comming model in shoot at newyork USA morning..</a></h4>
-                            <div class="btn-group">
-                                <a href="single.html" class="btn btn-danger">Ladakh, India</a>
-                                <button class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> 345</button>
-                            </div>
-                            <p>Posted on : 23.05.2016</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <figure class="figure">
-                                <img src="images/banner-image-3.jpg" class="figure-img img-fluid" alt="A generic square placeholder image with rounded corners in a figure.">
-                                <figcaption class="figure-caption"> <img src="images/comment.png" alt=""><span>45</span>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <h4><a href="single.html">Super and up for the comming model in shoot at newyork USA morning..</a></h4>
-                            <div class="btn-group">
-                                <a href="single.html" class="btn btn-danger">Ladakh, India</a>
-                                <button class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> 345</button>
-                            </div>
-                            <p>Posted on : 23.05.2016</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <figure class="figure">
-                                <img src="images/banner-image-4.jpg" class="figure-img img-fluid" alt="A generic square placeholder image with rounded corners in a figure.">
-                                <figcaption class="figure-caption"><img src="images/comment.png" alt=""><span>45</span>
-                                
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <h4><a href="single.html">Super and up for the comming model in shoot at newyork USA morning..</a></h4>
-                            <div class="btn-group">
-                                <a href="single.html" class="btn btn-danger">Ladakh, India</a>
-                                <button class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> 345</button>
-                            </div>
-                            <p>Posted on : 23.05.2016</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <figure class="figure">
-                                <img src="images/banner-image-3.jpg" class="figure-img img-fluid" alt="A generic square placeholder image with rounded corners in a figure.">
-                                <figcaption class="figure-caption"><img src="images/comment.png" alt=""><span>45</span>
-                                
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <h4><a href="single.html">Super and up for the comming model in shoot at newyork USA morning..</a></h4>
-                            <div class="btn-group">
-                                <a href="single.html" class="btn btn-danger">Ladakh, India</a>
-                                <button class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> 345</button>
-                            </div>
-                            <p>Posted on : 23.05.2016</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <figure class="figure">
-                                <img src="images/banner-image-2.jpg" class="figure-img img-fluid" alt="A generic square placeholder image with rounded corners in a figure.">
-                                <figcaption class="figure-caption"><img src="images/comment.png" alt=""><span>45</span>
-                                
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <h4><a href="single.html">Super and up for the comming model in shoot at newyork USA morning..</a></h4>
-                            <div class="btn-group">
-                                <a href="single.html" class="btn btn-danger">Ladakh, India</a>
-                                <button class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> 345</button>
-                            </div>
-                            <p>Posted on : 23.05.2016</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <figure class="figure">
-                                <img src="images/banner-image-1.jpg" class="figure-img img-fluid" alt="A generic square placeholder image with rounded corners in a figure.">
-                                <figcaption class="figure-caption"><img src="images/comment.png" alt=""><span>45</span>
-                                
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <h4><a href="single.html">Super and up for the comming model in shoot at newyork USA morning..</a></h4>
-                            <div class="btn-group">
-                                <a href="single.html" class="btn btn-danger">Ladakh, India</a>
-                                <button class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> 345</button>
-                            </div>
-                            <p>Posted on : 23.05.2016</p>
-                        </div>
-                    </div>
-                </div>
+                        {% endfor %}
+
+                        
                 <div class="col-lg-6 col-md-12">
                     <div class="row">
                         <div class="col-md-12">

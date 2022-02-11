@@ -1,16 +1,25 @@
 from django.urls import path 
-from AppBlog import views
+from AppBlog.views import (
+    PostListView,
+    PostDetailView,
+    PostUpdateView,
+    PostCreateView,
+    PostDeleteView
+)
+
 
 
 
 urlpatterns = [
-    path('', views.post, name='Post'),
-    path('showpost/<id>',views.showPost, name="ShowPost"),
-    path('about/', views.About, name="About"),
-    path("comment/<id>", views.comment, name="Comment"),
-    path("newpost/", views.newPost, name="NewPost"),
-    path('gallery/', views.gallery, name="Gallery"),
-    path('contact/', views.contactus, name="Contact"),
+    path('', PostListView.as_view(), name="list_posts"),
+    path('showpost/<slug>/',PostDetailView.as_view(), name="detail_post"),
+    path("newpost/", PostCreateView.as_view(), name="create_post"),
+    path("<slug>/update/", PostUpdateView.as_view(), name="update_post"),
+    path("<slug>/delete/", PostDeleteView.as_view(), name="delete_post"),
+
+    #path('gallery/', views.gallery, name="Gallery"),
+    #path('contact/', views.contacts, name="Contact"),
+    #path('about/', views.About, name="About"),
     
 
     
