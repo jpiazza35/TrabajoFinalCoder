@@ -23,18 +23,18 @@ class Post(models.Model):
     class PostObjects(models.Manager):
         def get_queryset(self):
             return super().get_queryset() .filter(status='published')
-    STATUS = (
-    ('draft', "draft"),
-    ('published', "published"),
+    options = (
+    ('draft', "Draft"),
+    ('published', "Published"),
 )
 
 
     tag = models.ForeignKey(Tag, on_delete=models.PROTECT, default=1 )
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=250, unique_for_date='published', null=False, unique=True) ##Esta palabra define la parte final de la URL que identifica una página dentro de un sitio web.
+    slug = models.SlugField(max_length=250, null=False, unique=True) ##Esta palabra define la parte final de la URL que identifica una página dentro de un sitio web.
     author = models.ForeignKey(User,on_delete=models.CASCADE, related_name='blog_posts')
     content= models.TextField()
-    status = models.CharField(max_length=50,choices=STATUS, default='draft')
+    status = models.CharField(max_length=50,choices=options, default='draft')
     image = models.ImageField()
     created_on = models.DateTimeField(default=timezone.now)
     updated_on = models.DateTimeField(default=timezone.now)
