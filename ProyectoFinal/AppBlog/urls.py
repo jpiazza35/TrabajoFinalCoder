@@ -4,7 +4,8 @@ from AppBlog.views import (
     PostDetailView,
     PostUpdateView,
     PostCreateView,
-    PostDeleteView
+    PostDeleteView,
+    about
 )
 
 
@@ -12,6 +13,7 @@ from AppBlog.views import (
 
 urlpatterns = [
     path('', PostListView.as_view(), name="list_posts"),
+    path('about/',about, name="about"),
     path('showpost/<slug>/',PostDetailView.as_view(), name="detail_post"),
     path("newpost/", PostCreateView.as_view(), name="create_post"),
     path("<slug>/update/", PostUpdateView.as_view(), name="update_post"),

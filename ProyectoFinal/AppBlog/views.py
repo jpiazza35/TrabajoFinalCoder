@@ -21,6 +21,9 @@ class PostUpdateView(UpdateView):
 class PostDeleteView(DeleteView):
     model = Post
 
+def about(request):
+    return render(request, 'AppBlog/about.html')
+
 
 
 
